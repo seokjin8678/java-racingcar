@@ -32,4 +32,17 @@ public class StringTest {
         // then
         assertThat(result).containsExactly("1");
     }
+
+    @Test
+    @DisplayName("\"(1,2)\"문자열에서 '()'를 제거하고 \"1,2\"가 반환되어야 한다.")
+    void substringString() {
+        // given
+        String input = "(1,2)";
+
+        // when
+        String result = input.substring(1, input.length() - 1);
+
+        // then
+        assertThat(result).isEqualTo("1,2");
+    }
 }
