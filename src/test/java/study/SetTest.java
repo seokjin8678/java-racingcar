@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
@@ -39,5 +40,13 @@ public class SetTest {
     void containsSet(int input) {
         // expect
         assertThat(numbers.contains(input)).isTrue();
+    }
+
+    @ParameterizedTest
+    @DisplayName("set에 1,2,3 값이 있으면 true를 반환하고 그 외의 값은 false를 반환해야 한다.")
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    void containsSet_ShouldReturnTrueForContainedValueElseFalse(int input, boolean expected) {
+        // expect
+        assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 }
