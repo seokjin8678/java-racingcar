@@ -7,6 +7,8 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
 
@@ -29,5 +31,13 @@ public class SetTest {
 
         // expect
         assertThat(size).isEqualTo(3);
+    }
+
+    @ParameterizedTest()
+    @DisplayName("set에 1,2,3 값이 있는지 확인해야 한다")
+    @ValueSource(ints = {1, 2, 3})
+    void containsSet(int input) {
+        // expect
+        assertThat(numbers.contains(input)).isTrue();
     }
 }
