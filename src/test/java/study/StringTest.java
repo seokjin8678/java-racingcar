@@ -1,6 +1,7 @@
 package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,5 +45,29 @@ public class StringTest {
 
         // then
         assertThat(result).isEqualTo("1,2");
+    }
+
+    @Test
+    @DisplayName("\"abc\" 문자열에서 특정 위치의 문자를 가져와야 한다.")
+    void indexOfString() {
+        // given
+        String input = "abc";
+
+        // when
+        char result = input.charAt(2);
+
+        // then
+        assertThat(result).isEqualTo('c');
+    }
+
+    @Test
+    @DisplayName("\"abc\" 문자열에서 특정 위치의 문자를 가져올 때 위치 값을 벗어나면 StringIndexOutOfBoundsException이 발생해야 한다.")
+    void indexOfStringThrowException() {
+        // given
+        String input = "abc";
+
+        // expect
+        assertThatThrownBy(() -> input.charAt(4))
+                .isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
